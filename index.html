@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudheer Kumar | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+  --bg:#0b1120;
+  --glass:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.15);
+  --text:#e5e7eb;
+  --accent:#38bdf8;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);}
+
+/* NAVBAR */
+nav{
+  position:fixed;top:0;width:100%;
+  padding:15px 8%;
+  display:flex;justify-content:space-between;align-items:center;
+  backdrop-filter:blur(15px);
+  background:var(--glass);
+  border-bottom:1px solid var(--border);
+  z-index:100;
+}
+nav h1{color:var(--accent);font-size:22px;}
+nav ul{display:flex;gap:25px;}
+nav ul li{list-style:none;}
+nav ul li a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:500;
+  position:relative;
+}
+nav ul li a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:-4px;
+  width:0;height:2px;
+  background:var(--accent);
+  transition:0.3s;
+}
+nav ul li a:hover::after{width:100%;}
+
+/* SECTIONS */
+section{
+  padding:55px 8%;
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.8s ease;
+}
+section.show{
+  opacity:1;
+  transform:none;
+}
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 120px);
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:50px;
+  align-items:center;
+}
+.profile-pic{display:flex;justify-content:center;}
+.profile-pic img{
+  width:220px;height:220px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid var(--accent);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+.hero h2{font-size:52px;}
+.hero p{margin-top:16px;font-size:18px;line-height:1.7;}
+.hero-about{
+  margin-top:20px;
+  font-size:16px;
+  line-height:1.8;
+  max-width:520px;
+  opacity:0.95;
+}
+
+/* ABOUT */
+.about-section{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+.about-divider{
+  width:70px;height:4px;
+  background:linear-gradient(90deg,var(--accent),#60a5fa);
+  margin:14px auto 22px;
+  border-radius:10px;
+}
+.about-text{font-size:17px;line-height:1.8;opacity:0.95;}
+
+/* GRIDS */
+.grid{
+  display:grid;
+  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+.skills-grid,.projects-grid,.cert-grid{
+  display:grid;
+  gap:30px;
+  grid-template-columns:repeat(3,1fr);
+}
+
+/* CARDS */
+.card{
+  background:var(--glass);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter:blur(20px);
+  transition:0.35s ease;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 10px 30px rgba(56,189,248,0.15);
+}
+
+/* SKILLS */
+.skill-card{
+  text-align:center;
+  font-size:18px;
+  font-weight:600;
+  padding:35px 20px;
+  background:
+    linear-gradient(var(--bg),var(--bg)) padding-box,
+    linear-gradient(135deg,var(--accent),#818cf8) border-box;
+  border:2px solid transparent;
+}
+
+/* EDUCATION */
+.edu-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:6px;
+  font-size:15px;
+  opacity:0.9;
+}
+.edu-line i{font-size:16px;color:var(--accent);}
+
+/* CERTIFICATIONS */
+.cert-card{text-align:center;}
+.cert-card i{
+  font-size:24px;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.cert-card a{
+  display:inline-block;
+  margin-top:10px;
+  color:var(--accent);
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* PROJECTS (NO UNDERLINE) */
+.project{
+  position:relative;
+  background:rgba(15,23,42,0.9);
+}
+.projects-grid a{
+  text-decoration:none;   /* <-- underline removed */
+}
+.project h3{
+  font-size:20px;
+  font-weight:700;
+  color:#f8fafc;
+  margin-bottom:8px;
+}
+.project p{
+  font-size:15px;
+  line-height:1.6;
+  color:#cbd5e1;
+}
+.project::after{
+  content:"↗";
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  color:var(--accent);
+}
+
+/* CONTACT */
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+}
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text);
+}
+.map{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  height:220px;
+}
+.map iframe{width:100%;height:100%;border:0;}
+
+.icon-links{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  margin-top:20px;
+}
+.icon-links a{
+  width:45px;height:45px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  font-size:20px;
+  color:var(--accent);
+  background:var(--glass);
+  border:1px solid var(--border);
+  transition:0.3s;
+}
+.icon-links a:hover{
+  transform:translateY(-5px);
+}
+
+/* FOOTER */
+footer{text-align:center;padding:25px;opacity:0.7;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;}
+  .skills-grid,.projects-grid,.cert-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-wrapper{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .skills-grid,.projects-grid,.cert-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>Sudheer Kumar</h1>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="profile-pic">
+    <img src="profile.jpg" alt="Sudheer Kumar">
+  </div>
+  <div>
+    <h2 id="typewriter"></h2>
+    <p>Web Developer focused on modern, responsive web applications.</p>
+    <div class="hero-about">
+      Passionate B.Tech ECE student with strong interest in frontend development,
+      building clean UI and responsive web experiences.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <h2>About Me</h2>
+  <div class="about-divider"></div>
+  <p class="about-text">
+    I am Sudheer Kumar, a B.Tech student in Electronics & Communication Engineering
+    with a strong interest in web development.
+  </p>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2>Education</h2><br>
+  <div class="grid">
+    <div class="card">
+      <h3>B.Tech – Electronics & Communication Engineering</h3>
+      <div class="edu-line"><i class="fa-regular fa-calendar"></i>2024 – 2028 (Pursuing)</div>
+      <div class="edu-line"><i class="fa-solid fa-building-columns"></i>Bachelor’s Degree</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2><br>
+  <div class="skills-grid">
+    <div class="card skill-card">HTML5</div>
+    <div class="card skill-card">CSS3</div>
+    <div class="card skill-card">JavaScript</div>
+    <div class="card skill-card">Git & GitHub</div>
+    <div class="card skill-card">Responsive Design</div>
+    <div class="card skill-card">Canva</div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <h2>Certifications</h2><br>
+  <div class="cert-grid">
+    <div class="card cert-card"><i class="fa-solid fa-pen-nib"></i><h3>Canva</h3><a href="canva.jpeg" target="_blank">View</a></div>
+    <div class="card cert-card"><i class="fa-solid fa-shield-halved"></i><h3>Palo Alto</h3><a href="cybersecurity.jpeg" target="_blank">View</a></div>
+    <div class="card cert-card"><i class="fa-solid fa-handshake-angle"></i><h3>Volunteer</h3><a href="volunteer.jpeg" target="_blank">View</a></div>
+    <div class="card cert-card"><i class="fa-solid fa-code"></i><h3>HTML</h3><a href="html-certificate.jpeg" target="_blank">View</a></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2><br>
+  <div class="projects-grid">
+    <a href="https://landing-page-85f1.onrender.com" target="_blank" class="card project">
+      <h3>Landing Page</h3>
+      <p>Modern responsive landing page with clean UI and animations.</p>
+    </a>
+    <a href="https://sct-wd-2-y0in.onrender.com" target="_blank" class="card project">
+      <h3>Stopwatch App</h3>
+      <p>Interactive stopwatch with start, pause, reset and lap features.</p>
+    </a>
+    <a href="https://to-do-web-app-iptp.onrender.com" target="_blank" class="card project">
+      <h3>To-Do App</h3>
+      <p>Task management app with clean design and JavaScript logic.</p>
+    </a>
+    <a href="https://tic-tac-toe-web-app-vvs6.onrender.com" target="_blank" class="card project">
+      <h3>Tic-Tac-Toe</h3>
+      <p>Classic tic-tac-toe game with interactive gameplay.</p>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Me</h2><br>
+  <div class="contact-wrapper">
+    <div class="card contact-form">
+      <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="text" name="name" placeholder="Name" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <textarea name="message" rows="4" placeholder="Message" required></textarea><br><br>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+    <div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=Gurgaon,Haryana,India&output=embed"></iframe>
+      </div>
+      <div class="icon-links">
+        <a href="https://github.com/sudheerkr-kr" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sudheerkumar427" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:sudheerkumar8076@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Sudheer Kumar — Personal Portfolio</footer>
+
+<script>
+/* TYPEWRITER */
+const text="Hi, I'm Sudheer Kumar";
+let i=0;
+function typeWriter(){
+  if(i<text.length){
+    document.getElementById("typewriter").innerHTML+=text.charAt(i);
+    i++; setTimeout(typeWriter,80);
+  }
+}
+window.onload=typeWriter;
+
+/* SCROLL REVEAL */
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-120){
+      sec.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
